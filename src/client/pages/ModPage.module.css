@@ -1,0 +1,12 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 300px;
+  max-width: 1200px;
+  grid-column-gap: 16px;
+}
+
+.content {
+  max-width: calc(1200px - 300px - 16px - 16px - 16px);
+}
+
+.aside {}

@@ -1,0 +1,72 @@
+{
+  "nodeModulesDir": "auto",
+  "tasks": {
+    "dev:server": "deno run --unstable-kv --env-file -A --watch src/server/main.ts",
+    "dev:client": "deno run -A --node-modules-dir npm:vite",
+    "build:client": "deno run -A --node-modules-dir npm:vite build",
+    "preview:client": "deno run -A --node-modules-dir npm:vite preview",
+    "dev": {
+      "dependencies": [
+        "dev:server",
+        "dev:client"
+      ]
+    },
+    "orval": "orval --config orval.config.cjs"
+  },
+  "compilerOptions": {
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable",
+      "Deno.ns",
+      "Deno.unstable"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react",
+    "useUnknownInCatchVariables": false
+  },
+  "imports": {
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.0",
+    "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.5.1",
+    "@hono/zod-validator": "npm:@hono/zod-validator@^0.4.3",
+    "@mantine/core": "npm:@mantine/core@^7.17.2",
+    "@mantine/dates": "npm:@mantine/dates@^7.17.2",
+    "@mantine/form": "npm:@mantine/form@^7.17.2",
+    "@mantine/hooks": "npm:@mantine/hooks@^7.17.2",
+    "@mantine/modals": "npm:@mantine/modals@^7.17.2",
+    "@mantine/notifications": "npm:@mantine/notifications@^7.17.2",
+    "@monaco-editor/react": "npm:@monaco-editor/react@^4.7.0",
+    "@scalar/hono-api-reference": "npm:@scalar/hono-api-reference@^0.7.1",
+    "@std/expect": "jsr:@std/expect@^1.0.13",
+    "@std/testing": "jsr:@std/testing@^1.0.9",
+    "@tanstack/react-query": "npm:@tanstack/react-query@^5.68.0",
+    "@types/react": "npm:@types/react@^18.3.12",
+    "@types/react-dom": "npm:@types/react-dom@^18.3.1",
+    "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@^3.7.1",
+    "axios": "npm:axios@^1.8.3",
+    "dayjs": "npm:dayjs@^1.11.13",
+    "fuse.js": "npm:fuse.js@^7.1.0",
+    "hono": "npm:hono@^4.7.4",
+    "hono-openapi": "npm:hono-openapi@^0.4.6",
+    "jose": "npm:jose@^6.0.10",
+    "lodash": "npm:lodash@^4.17.21",
+    "marked": "npm:marked@^15.0.7",
+    "ms": "npm:ms@^2.1.3",
+    "octokit": "npm:octokit@^4.1.2",
+    "orval": "npm:orval@^7.7.0",
+    "react": "npm:react@^18.3.1",
+    "react-dom": "npm:react-dom@^18.3.1",
+    "react-icons": "npm:react-icons@^5.5.0",
+    "react-router-dom": "npm:react-router-dom@^7.3.0",
+    "react-use": "npm:react-use@^17.6.0",
+    "sort-keys": "npm:sort-keys@^5.1.0",
+    "swr": "npm:swr@^2.3.3",
+    "vite": "npm:vite@^6.0.1",
+    "vite-plugin-font": "npm:vite-plugin-font@^5.1.1",
+    "yaml": "npm:yaml@^2.7.0",
+    "zod": "npm:zod@^3.24.2",
+    "zod-openapi": "npm:zod-openapi@^4.2.3",
+    "zod-to-json-schema": "npm:zod-to-json-schema@^3.24.3"
+  }
+}
