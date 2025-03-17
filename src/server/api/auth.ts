@@ -72,7 +72,7 @@ router.get(
 
     setCookie(c, config.sessionCookieName, token);
 
-    return c.redirect("http://localhost:5173/");
+    return c.redirect(config.ghHomepageUrl);
   },
 );
 
@@ -132,7 +132,7 @@ router.get(
   }),
   (c) => {
     deleteCookie(c, config.sessionCookieName);
-    return c.redirect("http://localhost:5173/");
+    return c.redirect(config.ghHomepageUrl);
   },
 );
 
