@@ -5,6 +5,11 @@
     "dev:client": "deno run -A --node-modules-dir npm:vite",
     "build:client": "deno run -A --node-modules-dir npm:vite build",
     "preview:client": "deno run -A --node-modules-dir npm:vite preview",
+    "build": {
+      "dependencies": [
+        "build:client"
+      ]
+    },
     "dev": {
       "dependencies": [
         "dev:server",
