@@ -237,7 +237,7 @@ const modFormSchema = z.object({
       "The mods dependencies. Add any mods this mod requires. All will be subscribed when this mod is subscribed.",
     ),
   published: z.boolean().default(false).describe(
-    "Published mods are visible to all users and can be subscribed to by users.",
+    "Published mods are visible to all users and can be subscribed to by anyone. Disabling this prevents the mod from being present in the main list, but it can still be accessed it via the direct URL. It can be subscribed to by anyone who has the URL and uses 'Open in Dropzone'. From your User Mods list select 'View in Registry' to get the URL and share privately.",
   ),
   maintainers: z.array(z.string()).min(1),
   versions: z.array(
