@@ -5,7 +5,7 @@ import { describeRoute } from "hono-openapi";
 import { HTTP_STATUS_NOT_FOUND, HTTP_STATUS_OK } from "../constants.ts";
 import { jsonContent } from "../utils/jsonContent.ts";
 import { validator } from "hono-openapi/zod";
-import { getModById, getMods, Mod } from "../dao/user-mods.ts";
+import { getModById, getMods, type Mod } from "../dao/user-mods.ts";
 import { HTTPException } from "hono/http-exception";
 
 export const releaseDataSchema = z.object({

@@ -16,6 +16,8 @@ import {
 } from "../dao/user-mods.ts";
 import { sudoUser } from "../middleware/sudoUser.ts";
 import { zodToJsonSchema } from "zod-to-json-schema";
+import { purgeCloudflareCache } from "../utils/purgeCloudflareCache.ts";
+import { config } from "../config.ts";
 
 const mod = modSchema.openapi({
   title: "Mod",
@@ -141,6 +143,9 @@ router.put(
     const mod = c.req.valid("json");
 
     const result = await setMod(mod);
+    if (config.features.enableCloudflarePurge) {
+      await purgeCloudflareCache(mod.id);
+    }
 
     return c.json(result);
   },

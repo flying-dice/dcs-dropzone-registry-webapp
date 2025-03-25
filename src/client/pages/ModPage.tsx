@@ -1,7 +1,4 @@
-import {
-  RegistryIndexItem,
-  useGetRegistryEntry,
-} from "../_autogen/client.ts";
+import { RegistryIndexItem, useGetRegistryEntry } from "../_autogen/client.ts";
 import {
   Anchor,
   AppShell,

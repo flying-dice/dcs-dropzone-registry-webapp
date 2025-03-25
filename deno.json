@@ -50,6 +50,7 @@
     "@types/react-dom": "npm:@types/react-dom@^18.3.1",
     "@vitejs/plugin-react-swc": "npm:@vitejs/plugin-react-swc@^3.7.1",
     "axios": "npm:axios@^1.8.3",
+    "cloudflare": "npm:cloudflare@^4.2.0",
     "dayjs": "npm:dayjs@^1.11.13",
     "fuse.js": "npm:fuse.js@^7.1.0",
     "hono": "npm:hono@^4.7.4",

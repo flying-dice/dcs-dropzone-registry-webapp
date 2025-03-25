@@ -17,6 +17,8 @@ import {
   modSchema,
   setMod,
 } from "../dao/user-mods.ts";
+import { purgeCloudflareCache } from "../utils/purgeCloudflareCache.ts";
+import { config } from "../config.ts";
 
 export const mod = modSchema.openapi({
   title: "Mod",
@@ -149,6 +151,9 @@ router.put(
     }
 
     const result = await setMod(mod);
+    if (config.features.enableCloudflarePurge) {
+      await purgeCloudflareCache(mod.id);
+    }
 
     return c.json(result);
   },

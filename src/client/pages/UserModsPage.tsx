@@ -196,8 +196,8 @@ export const UserModsPage: React.FC = () => {
             {mods.value?.length === 0 && (
               <Table.Caption>
                 <Alert>
-                  Your mod library is empty. Add your creations and share
-                  them with others!
+                  Your mod library is empty. Add your creations and share them
+                  with others!
                 </Alert>
               </Table.Caption>
             )}

@@ -136,7 +136,7 @@ export async function getMods(): Promise<Mod[]> {
     if (result.success) {
       modList.push(result.data);
     } else {
-      console.warn(`Invalid mod`, result);
+      console.warn("Invalid mod", result);
     }
   }
 

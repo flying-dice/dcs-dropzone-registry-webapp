@@ -40,5 +40,3 @@ jobs:
           project: "dcs-dropzone-registry-wa"
           entrypoint: "src/server/main.ts"
           root: ""
-          
-          
