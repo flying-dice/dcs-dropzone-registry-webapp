@@ -13,6 +13,7 @@ Create a .env file with the following content:
 ```dotenv
 JWT_SECRET=s3cr3t
 
+# GitHub OAuth app credentials, this is only for local development a different Github app exists for production
 GH_CLIENT_ID=Ov23li5IVDqsPjGrdLkN
 GH_CLIENT_SECRET=4e4ba8824ca0458c02e5fc7b0ebc6232e85b4022
 
