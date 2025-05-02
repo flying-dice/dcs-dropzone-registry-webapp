@@ -155,6 +155,91 @@ export type GetAuthByProviderCallbackParams = {
   state: string;
 };
 
+export type GetRegistryIndex200ItemAuthorsItem = {
+  name: string;
+  avatar?: string;
+  url?: string;
+};
+
+export type GetRegistryIndex200Item = {
+  /** The name of the mod */
+  name: string;
+  /** A short description of the mod to be displayed in the mod tile */
+  description: string;
+  authors: GetRegistryIndex200ItemAuthorsItem[];
+  /** The tags of the mod, these are used to filter mods in the mod browser */
+  tags: string[];
+  /** The category of the mod, this is used to group mods in the mod browser */
+  category: string;
+  latest: string;
+  /** The dependencies of the mod */
+  dependencies?: string[];
+  /** @pattern ^[a-z0-9-]+$ */
+  id: string;
+  imageUrl: string;
+};
+
+export type GetRegistryEntry200AuthorsItem = {
+  name: string;
+  avatar?: string;
+  url?: string;
+};
+
+export type GetRegistryEntry200VersionsItemAssetsItemLinksItem = {
+  /** The name of the file # separates download path and internal zip path */
+  source: string;
+  /** The name of the installation location relative to install path */
+  target: string;
+  /** Run on simulation (mission) start, note that this will execute the script before the mission environment is sanitized */
+  runonstart?: boolean;
+};
+
+export type GetRegistryEntry200VersionsItemAssetsItem = {
+  /** The URL of the file to download */
+  remoteSource: string;
+  links: GetRegistryEntry200VersionsItemAssetsItemLinksItem[];
+};
+
+export type GetRegistryEntry200VersionsItem = {
+  /** The release page of the release */
+  releasepage: string;
+  /** The name of the release */
+  name: string;
+  /** The version of the release */
+  version: string;
+  /** The date of the release */
+  date: string;
+  /** Executable file specifically Tools */
+  exePath?: string;
+  /** The array of files to install */
+  assets: GetRegistryEntry200VersionsItemAssetsItem[];
+};
+
+export type GetRegistryEntry200 = {
+  /** The homepage of the mod */
+  homepage: string;
+  /** The name of the mod */
+  name: string;
+  /** A short description of the mod to be displayed in the mod tile */
+  description: string;
+  authors: GetRegistryEntry200AuthorsItem[];
+  /** The tags of the mod, these are used to filter mods in the mod browser */
+  tags: string[];
+  /** The category of the mod, this is used to group mods in the mod browser */
+  category: string;
+  /** The license of the mod */
+  license: string;
+  latest: string;
+  /** The dependencies of the mod */
+  dependencies?: string[];
+  /** The versions of the mod */
+  versions: GetRegistryEntry200VersionsItem[];
+  /** @pattern ^[a-z0-9-]+$ */
+  id: string;
+  imageUrl: string;
+  content: string;
+};
+
 type AwaitedInput<T> = PromiseLike<T> | T;
 
 type Awaited<O> = O extends AwaitedInput<infer T> ? T : never;
@@ -1210,6 +1295,167 @@ export function useGetAuthLogout<
   },
 ): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
   const queryOptions = getGetAuthLogoutQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
+
+/**
+ * @summary Get Registry Index
+ */
+export const getRegistryIndex = (
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<GetRegistryIndex200Item[]>> => {
+  return axios.get(
+    `/api/registry/index.json`,
+    options,
+  );
+};
+
+export const getGetRegistryIndexQueryKey = () => {
+  return [`/api/registry/index.json`] as const;
+};
+
+export const getGetRegistryIndexQueryOptions = <
+  TData = Awaited<ReturnType<typeof getRegistryIndex>>,
+  TError = AxiosError<unknown>,
+>(
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getRegistryIndex>>,
+      TError,
+      TData
+    >;
+    axios?: AxiosRequestConfig;
+  },
+) => {
+  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetRegistryIndexQueryKey();
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getRegistryIndex>>> = (
+    { signal },
+  ) => getRegistryIndex({ signal, ...axiosOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as
+    & UseQueryOptions<
+      Awaited<ReturnType<typeof getRegistryIndex>>,
+      TError,
+      TData
+    >
+    & { queryKey: QueryKey };
+};
+
+export type GetRegistryIndexQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getRegistryIndex>>
+>;
+export type GetRegistryIndexQueryError = AxiosError<unknown>;
+
+/**
+ * @summary Get Registry Index
+ */
+
+export function useGetRegistryIndex<
+  TData = Awaited<ReturnType<typeof getRegistryIndex>>,
+  TError = AxiosError<unknown>,
+>(
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getRegistryIndex>>,
+      TError,
+      TData
+    >;
+    axios?: AxiosRequestConfig;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetRegistryIndexQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  query.queryKey = queryOptions.queryKey;
+
+  return query;
+}
+
+/**
+ * @summary Get Registry Entry
+ */
+export const getRegistryEntry = (
+  id: string,
+  options?: AxiosRequestConfig,
+): Promise<AxiosResponse<GetRegistryEntry200>> => {
+  return axios.get(
+    `/api/registry/${id}/index.json`,
+    options,
+  );
+};
+
+export const getGetRegistryEntryQueryKey = (id: string) => {
+  return [`/api/registry/${id}/index.json`] as const;
+};
+
+export const getGetRegistryEntryQueryOptions = <
+  TData = Awaited<ReturnType<typeof getRegistryEntry>>,
+  TError = AxiosError<unknown>,
+>(
+  id: string,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getRegistryEntry>>,
+      TError,
+      TData
+    >;
+    axios?: AxiosRequestConfig;
+  },
+) => {
+  const { query: queryOptions, axios: axiosOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetRegistryEntryQueryKey(id);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getRegistryEntry>>> = (
+    { signal },
+  ) => getRegistryEntry(id, { signal, ...axiosOptions });
+
+  return { queryKey, queryFn, enabled: !!id, ...queryOptions } as
+    & UseQueryOptions<
+      Awaited<ReturnType<typeof getRegistryEntry>>,
+      TError,
+      TData
+    >
+    & { queryKey: QueryKey };
+};
+
+export type GetRegistryEntryQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getRegistryEntry>>
+>;
+export type GetRegistryEntryQueryError = AxiosError<unknown>;
+
+/**
+ * @summary Get Registry Entry
+ */
+
+export function useGetRegistryEntry<
+  TData = Awaited<ReturnType<typeof getRegistryEntry>>,
+  TError = AxiosError<unknown>,
+>(
+  id: string,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getRegistryEntry>>,
+      TError,
+      TData
+    >;
+    axios?: AxiosRequestConfig;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetRegistryEntryQueryOptions(id, options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;

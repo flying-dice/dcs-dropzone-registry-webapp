@@ -24,6 +24,7 @@ app.route("/api/registry", registry);
 app.get(
   "/v3/api-docs",
   openAPISpecs(app, {
+    excludeStaticFile: false,
     documentation: {
       info: {
         title: "DCS Dropzone Registry",
@@ -38,6 +39,18 @@ app.get(
         name: "Health",
         description:
           "Endpoints for checking the health of the service, such as readiness and liveness probes",
+      }, {
+        name: "User Mods",
+        description:
+          "Endpoints for managing user mods, such as getting, creating, updating and deleting user mods",
+      }, {
+        name: "Sudo Mods",
+        description:
+          "Endpoints for managing sudo mods, such as getting, creating, updating and deleting sudo mods",
+      }, {
+        name: "Registry",
+        description:
+          "Endpoints for managing the registry, such as getting, creating, updating and deleting registry entries",
       }],
       components: {
         securitySchemes: {

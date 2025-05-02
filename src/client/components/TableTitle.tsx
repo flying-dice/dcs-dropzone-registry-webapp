@@ -16,6 +16,7 @@ export function TableTitle(props: {
   titleOrder?: TitleOrder;
   onAdd?: () => void;
   help?: string;
+  rightSection?: React.ReactNode;
 }) {
   const [isOpen, { toggle }] = useDisclosure(false);
   return (
@@ -31,6 +32,7 @@ export function TableTitle(props: {
           <ActionIcon variant="default" onClick={props.onAdd}>
             <BiPlus />
           </ActionIcon>
+          {props?.rightSection}
         </Group>
       </Group>
       {props.help && (

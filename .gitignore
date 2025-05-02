@@ -27,3 +27,5 @@ dist-ssr
 
 .idea/
 .env
+
+scripts/migrate/*.json

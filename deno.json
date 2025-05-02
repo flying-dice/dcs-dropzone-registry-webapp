@@ -56,6 +56,7 @@
     "hono": "npm:hono@^4.7.4",
     "hono-openapi": "npm:hono-openapi@^0.4.6",
     "jose": "npm:jose@^6.0.10",
+    "js-file-download": "npm:js-file-download@^0.4.12",
     "lodash": "npm:lodash@^4.17.21",
     "marked": "npm:marked@^15.0.7",
     "ms": "npm:ms@^2.1.3",

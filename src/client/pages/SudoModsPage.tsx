@@ -2,6 +2,7 @@ import { ActionIcon, AppShell, Container, Menu, Table } from "@mantine/core";
 import { modals, openConfirmModal, openModal } from "@mantine/modals";
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { BiDownload } from "react-icons/bi";
 import { Editor } from "@monaco-editor/react";
 import {
   deleteSudoModById,
@@ -18,6 +19,7 @@ import {
 import { TableTitle } from "../components/TableTitle.tsx";
 import { AxiosError } from "axios";
 import { stringify } from "yaml";
+import fileDownload from "js-file-download";
 
 export const SudoModsPage: React.FC = () => {
   const mods = useGetSudoMods();
@@ -133,6 +135,14 @@ export const SudoModsPage: React.FC = () => {
     </Table.Tr>
   ));
 
+  function handleDownload() {
+    try {
+      fileDownload(JSON.stringify(mods.data?.data, undefined, 2), "mods.json");
+    } catch (error) {
+      showErrorNotification(error);
+    }
+  }
+
   return (
     <AppShell.Main>
       <Container pt="md">
@@ -141,6 +151,11 @@ export const SudoModsPage: React.FC = () => {
           help="> Sudo mode allows you to manage all mods as a superuser. Use with caution. This is a restricted feature for administrators only. This is available as a replacement for direct database access."
           titleOrder={3}
           onAdd={() => handleAdd()}
+          rightSection={
+            <ActionIcon variant="default" onClick={handleDownload}>
+              <BiDownload />
+            </ActionIcon>
+          }
         />
         <Table>
           <Table.Thead>

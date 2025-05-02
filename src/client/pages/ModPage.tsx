@@ -1,4 +1,3 @@
-import { RegistryIndexItem, useGetRegistryEntry } from "../_autogen/client.ts";
 import {
   Anchor,
   AppShell,
@@ -28,6 +27,8 @@ import { useMount } from "react-use";
 import { ModImage } from "../components/ModImage.tsx";
 import { useValidatedParams } from "../hooks/useValidatedParams.ts";
 import { z } from "zod";
+import { RegistryIndexItem } from "../../../scripts/migrate/legacy-client.ts";
+import { useGetRegistryEntry } from "../_autogen/api.ts";
 
 export type SectionProps = {
   title: string;

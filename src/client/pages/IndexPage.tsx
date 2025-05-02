@@ -1,4 +1,3 @@
-import { useGetRegistryIndex } from "../_autogen/client.ts";
 import {
   AppShell,
   Container,
@@ -10,6 +9,7 @@ import { ModCard } from "../components/ModCard.tsx";
 import { usePagination } from "@mantine/hooks";
 import { useFuse } from "../hooks/useFuse.ts";
 import { BsSearch } from "react-icons/bs";
+import { useGetRegistryIndex } from "../_autogen/api.ts";
 
 export function IndexPage() {
   const data = useGetRegistryIndex();
